@@ -1,6 +1,6 @@
 type NameBadgeProps = {
   name: string;
-  greeting: string;
+  greeting?: string; // Optional
 };
 
 const NameBadge = ({ name, greeting }: NameBadgeProps): JSX.Element => {
