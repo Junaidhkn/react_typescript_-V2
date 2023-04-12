@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 type ControlPanelProps = {
   name: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
@@ -25,9 +23,9 @@ const ControlPanel = ({ name, onChange }: ControlPanelProps) => {
   );
 };
 
-ControlPanel.propTypes = {
-  name: PropTypes.string,
-  onChange: PropTypes.func,
-};
+// ControlPanel.propTypes = {
+//   name: PropTypes.string,
+//   onChange: PropTypes.func,
+// };
 
 export default ControlPanel;
