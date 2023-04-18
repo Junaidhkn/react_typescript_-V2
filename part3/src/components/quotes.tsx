@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { fetchQuotes } from './application';
 
 const Quotes = ({ children, count, onSubmit, onChange }: any) => {
   return (
@@ -6,7 +7,7 @@ const Quotes = ({ children, count, onSubmit, onChange }: any) => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onChange(e);
+          onChange(fetchQuotes(count));
         }}
       >
         <label htmlFor="number-of-quotes-to-load" className="block">
