@@ -29,7 +29,7 @@ const Application = () => {
   const onChange = () => {};
 
   if (!quotes) return <Loading />;
-  console.log(quotes);
+
   return (
     <main className="mx-auto w-full max-w-2xl py-16">
       <Quotes
