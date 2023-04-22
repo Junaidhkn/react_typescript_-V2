@@ -22,11 +22,12 @@ export const fetchQuotes = async (count: number) => {
 const Application = () => {
   // write a use state hook showcasing the quote type being Quote added above
   const [quotes, setQuotes] = useState<Quote[] | undefined>([]);
+  const [count, setCount] = useState(10);
 
   if (!quotes) return <Loading />;
   return (
     <main className="mx-auto w-full max-w-2xl py-16">
-      <Quotes count={2}>
+      <Quotes count={count} onSubmit={() => fetchQuotes(count).then(setQuotes)}>
         <div className="grid grid-cols-2 gap-4">
           {quotes.map((quote) => {
             return (

@@ -1,13 +1,24 @@
-import { useState } from 'react';
+import { ChangeEventHandler, PropsWithChildren, useState } from 'react';
 import { fetchQuotes } from './application';
 
-const Quotes = ({ children, count, onSubmit, onChange }: any) => {
+type QuotesProps = {
+  count: number;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+};
+
+const Quotes = ({
+  children,
+  count,
+  onSubmit,
+  onChange,
+}: PropsWithChildren<QuotesProps>) => {
   return (
     <section className="flex flex-col gap-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onChange(fetchQuotes(count));
+          onSubmit(e);
         }}
       >
         <label htmlFor="number-of-quotes-to-load" className="block">
