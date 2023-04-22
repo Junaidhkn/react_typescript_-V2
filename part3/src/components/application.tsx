@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Quotes from './quotes';
 import InspirationalQuote from './quote';
 import Loading from './loading';
@@ -19,14 +19,10 @@ export const fetchQuotes = async (count: number) => {
   return response.json();
 };
 
-console.log(fetchQuotes(10));
-
 const Application = () => {
   // write a use state hook showcasing the quote type being Quote added above
   const [quotes, setQuotes] = useState<Quote[] | undefined>([]);
-  const [count, setCount] = useState(10);
-
-  const onChange = () => {};
+  const [count, setCount] = useState(5);
 
   if (!quotes) return <Loading />;
 
@@ -34,20 +30,18 @@ const Application = () => {
     <main className="mx-auto w-full max-w-2xl py-16">
       <Quotes
         count={count}
+        setCount={setCount}
         onSubmit={() => fetchQuotes(count).then(setQuotes)}
-        onChange={onChange}
       >
-        <div className="grid grid-cols-2 gap-4">
-          {quotes.map((quote) => {
-            return (
-              <InspirationalQuote
-                key={quote.id}
-                content={quote.content}
-                source={quote.source}
-              />
-            );
-          })}
-        </div>
+        {quotes.map((quote) => {
+          return (
+            <InspirationalQuote
+              key={quote.id}
+              content={quote.content}
+              source={quote.source}
+            />
+          );
+        })}
       </Quotes>
     </main>
   );

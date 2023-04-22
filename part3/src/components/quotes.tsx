@@ -1,17 +1,24 @@
-import { ChangeEventHandler, PropsWithChildren, useState } from 'react';
+import { ChangeEventHandler, PropsWithChildren } from 'react';
 
 type QuotesProps = {
   count: number;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  setCount: React.Dispatch<React.SetStateAction<number>>;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 
 const Quotes = ({
   children,
+  setCount,
   count,
   onSubmit,
-  onChange,
 }: PropsWithChildren<QuotesProps>) => {
+  const onChangeHandler: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { value } = e.target;
+    const parsedValue = parseInt(value);
+    if (isNaN(parsedValue)) return;
+    setCount(parsedValue);
+  };
+
   return (
     <section className="flex flex-col gap-8">
       <form
@@ -31,7 +38,7 @@ const Quotes = ({
             min="0"
             max="25"
             value={count}
-            onChange={onChange}
+            onChange={onChangeHandler}
           />
           <button type="submit">Load Quotes</button>
         </div>
