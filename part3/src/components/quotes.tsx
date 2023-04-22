@@ -1,5 +1,4 @@
 import { ChangeEventHandler, PropsWithChildren, useState } from 'react';
-import { fetchQuotes } from './application';
 
 type QuotesProps = {
   count: number;
