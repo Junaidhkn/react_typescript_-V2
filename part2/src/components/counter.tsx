@@ -1,8 +1,16 @@
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
+
+const ruducer = (count: number, newValue: number): number => {
+  return newValue;
+};
+
+type ReducerState = ReturnType<typeof ruducer>;
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  const [value, setValue] = useState(count);
+  // const [count, setCount] = useState(0);
+  // const [value, setValue] = useState(count);
+
+  const [count, setCount] = useReducer(ruducer, 0);
 
   return (
     <section className="flex w-2/3 flex-col items-center gap-8 border-4 border-primary-500 bg-white p-8 shadow-lg">
